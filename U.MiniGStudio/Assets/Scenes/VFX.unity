@@ -362,10 +362,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0448d6e36b732cd49af2248612f8b018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkinnedMesh: {fileID: 1943917299}
-  VFXGraph: {fileID: 1655012977}
-  DissolveRate: 0.0125
-  RefreshRate: 0.025
+  _skinnedMesh: {fileID: 1943917299}
+  _vfxGraph: {fileID: 1655012977}
+  _animator: {fileID: 661444908}
+  _dissolveRate: 0.0125
+  _refreshRate: 0.025
+  _delay: 1.15
 --- !u!1 &512230477
 GameObject:
   m_ObjectHideFlags: 0
