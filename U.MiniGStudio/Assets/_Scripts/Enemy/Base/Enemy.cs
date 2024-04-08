@@ -8,6 +8,9 @@ namespace MiniGStudio
     public class Enemy : MonoBehaviour, IEnemyMovable
     {
         public Rigidbody RB { get; set; }
+        public Animator Animator { get; set; }
+
+        public Rigidbody PlayerRB;
 
         #region State Machine Variables
 
@@ -22,7 +25,9 @@ namespace MiniGStudio
 
         #endregion
 
-        #region Idle Variables
+        #region Chase Variables
+
+        public float speed;
 
         #endregion
 
@@ -49,6 +54,8 @@ namespace MiniGStudio
         {
             RB = GetComponent<Rigidbody>();
 
+            Animator = GetComponent<Animator>();
+
             StateMachine.Initialize(BirthState);
         }
 
@@ -71,8 +78,9 @@ namespace MiniGStudio
 
         public enum AnimationTriggerType
         {
-            EnemyDamaged,
-            PlayFootstepSound
+            BirthEnded,
+            RightFistEnded,
+            LeftFistEnded
         }
 
         #endregion

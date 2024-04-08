@@ -19,6 +19,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            _enemy.Animator.SetFloat("Speed", 0.0f);
         }
 
         public override void ExitState()

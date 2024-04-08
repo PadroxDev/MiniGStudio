@@ -14,12 +14,14 @@ namespace MiniGStudio
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
         {
             base.AnimationTriggerEvent(triggerType);
+            if (triggerType != Enemy.AnimationTriggerType.BirthEnded) return;
+            _enemyStateMachine.ChangeState(_enemy.ChaseState);
         }
 
         public override void EnterState()
         {
             base.EnterState();
-            Debug.Log("Hello from enter birth state");
+            _enemy.Animator.SetTrigger("Rise");
         }
 
         public override void ExitState()

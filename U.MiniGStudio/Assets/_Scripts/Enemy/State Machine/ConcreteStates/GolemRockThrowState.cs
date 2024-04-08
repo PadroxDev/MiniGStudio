@@ -18,6 +18,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            _enemy.Animator.SetTrigger("RockThrow");
         }
 
         public override void ExitState()
