@@ -19,6 +19,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            Debug.Log("Hello from enter birth state");
         }
 
         public override void ExitState()

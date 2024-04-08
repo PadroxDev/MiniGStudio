@@ -43,8 +43,6 @@ namespace MiniGStudio
             RB = GetComponent<Rigidbody>();
 
             StateMachine.Initialize(BirthState);
-
-            Console.WriteLine("SIUUUUUU");
         }
 
         private void Update()
