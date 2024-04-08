@@ -18,10 +18,17 @@ namespace MiniGStudio
         public GolemIdleState IdleState { get; set; }
         public GolemRockFistState RockFistState { get; set; }
         public GolemRockThrowState RockThrowState { get; set; }
+        public GolemRockHowlState RockHowlState { get; set; }
 
         #endregion
 
         #region Idle Variables
+
+        #endregion
+
+        #region Rock Howl Variables
+
+        [SerializeField] private GolemRockHowlDesc RockHowlDescriptor;
 
         #endregion
 
@@ -35,7 +42,7 @@ namespace MiniGStudio
             IdleState = new GolemIdleState(this, StateMachine);
             RockFistState = new GolemRockFistState(this, StateMachine);
             RockThrowState = new GolemRockThrowState(this, StateMachine);
-            
+            RockHowlState = new GolemRockHowlState(this, StateMachine, RockHowlDescriptor);
         }
 
         private void Start()
