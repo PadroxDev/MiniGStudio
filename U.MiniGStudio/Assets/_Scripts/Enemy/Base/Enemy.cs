@@ -27,13 +27,13 @@ namespace MiniGStudio
 
         #region Chase Variables
 
-        public float speed;
+        [SerializeField] private GolemChaseState.Descriptor _chaseDescriptor;
 
         #endregion
 
         #region Rock Howl Variables
 
-        [SerializeField] private GolemRockHowlDesc RockHowlDescriptor;
+        [SerializeField] private GolemRockHowlDesc _rockHowlDescriptor;
 
         #endregion
 
@@ -42,12 +42,12 @@ namespace MiniGStudio
             StateMachine = new EnemyStateMachine();
 
             BirthState = new GolemBirthState(this, StateMachine);
-            ChaseState = new GolemChaseState(this, StateMachine);
+            ChaseState = new GolemChaseState(this, StateMachine, _chaseDescriptor);
             DeathState = new GolemDeathState(this, StateMachine);
             IdleState = new GolemIdleState(this, StateMachine);
             RockFistState = new GolemRockFistState(this, StateMachine);
             RockThrowState = new GolemRockThrowState(this, StateMachine);
-            RockHowlState = new GolemRockHowlState(this, StateMachine, RockHowlDescriptor);
+            RockHowlState = new GolemRockHowlState(this, StateMachine, _rockHowlDescriptor);
         }
 
         private void Start()

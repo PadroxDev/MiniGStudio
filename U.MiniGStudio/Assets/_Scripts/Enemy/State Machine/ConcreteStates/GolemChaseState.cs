@@ -6,11 +6,20 @@ namespace MiniGStudio
 {
     public class GolemChaseState : EnemyState
     {
-        private float GolemChaseSpeed;
-
-        public GolemChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
+        [System.Serializable]
+        public struct Descriptor
         {
-            GolemChaseSpeed = _enemy.speed;
+            public float ChaseSpeed;
+            public float FistDetectionRange;
+        }
+
+        private const string SPEED_PARAM = "Speed";
+
+        private Descriptor _desc;
+
+        public GolemChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine, Descriptor desc) : base(enemy, enemyStateMachine)
+        {
+            _desc = desc;
         }
 
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
@@ -21,7 +30,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
-            _enemy.Animator.SetFloat("Speed",1.0f);
+            _enemy.Animator.SetFloat(SPEED_PARAM, 0);
         }
 
         public override void ExitState()
@@ -33,16 +42,18 @@ namespace MiniGStudio
         {
             base.FrameUpdate();
 
+            if ((_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).magnitude < _desc.FistDetectionRange)
+            {
+                _enemy.StateMachine.ChangeState(_enemy.RockFistState);
+                return;
+            }
+
             Vector3 direction = (_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).normalized;
             _enemy.transform.LookAt(_enemy.PlayerRB.transform.position, Vector3.up);
             Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
             _enemy.transform.rotation = Quaternion.Slerp(_enemy.transform.rotation, rot, 0.7f * Time.deltaTime);
-            _enemy.MoveEnemy(direction * GolemChaseSpeed);
-
-            if ((_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).magnitude < 3)
-            {
-                _enemy.StateMachine.ChangeState(_enemy.RockFistState);
-            }
+            _enemy.MoveEnemy(direction * _desc.ChaseSpeed);
+            _enemy.Animator.SetFloat(SPEED_PARAM, 1);
         }
 
         public override void PhysicsUpdate()
