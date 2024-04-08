@@ -37,6 +37,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            _enemy.Animator.SetTrigger("RockSpawn");
             SpawnRocks();
         }
 

@@ -8,7 +8,9 @@ namespace MiniGStudio
     public class Enemy : MonoBehaviour, IEnemyMovable
     {
         public Rigidbody RB { get; set; }
-        public Rigidbody PlayerRB { get; set; }
+        public Animator Animator { get; set; }
+
+        public Rigidbody PlayerRB;
 
         #region State Machine Variables
 
@@ -23,7 +25,9 @@ namespace MiniGStudio
 
         #endregion
 
-        #region Idle Variables
+        #region Chase Variables
+
+        [SerializeField] private GolemChaseState.Descriptor _chaseDescriptor;
 
         #endregion
 
@@ -44,7 +48,7 @@ namespace MiniGStudio
             StateMachine = new EnemyStateMachine();
 
             BirthState = new GolemBirthState(this, StateMachine);
-            ChaseState = new GolemChaseState(this, StateMachine);
+            ChaseState = new GolemChaseState(this, StateMachine, _chaseDescriptor);
             DeathState = new GolemDeathState(this, StateMachine);
             IdleState = new GolemIdleState(this, StateMachine);
             RockFistState = new GolemRockFistState(this, StateMachine);
@@ -55,6 +59,8 @@ namespace MiniGStudio
         private void Start()
         {
             RB = GetComponent<Rigidbody>();
+
+            Animator = GetComponent<Animator>();
 
             StateMachine.Initialize(BirthState);
         }
@@ -78,8 +84,9 @@ namespace MiniGStudio
 
         public enum AnimationTriggerType
         {
-            EnemyDamaged,
-            PlayFootstepSound
+            BirthEnded,
+            RightFistEnded,
+            LeftFistEnded
         }
 
         #endregion
