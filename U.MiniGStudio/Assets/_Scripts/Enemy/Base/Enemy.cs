@@ -49,7 +49,7 @@ namespace MiniGStudio
         {
             RB = GetComponent<Rigidbody>();
 
-            StateMachine.Initialize(BirthState);
+            StateMachine.Initialize(RockHowlState);
         }
 
         private void Update()
@@ -71,8 +71,8 @@ namespace MiniGStudio
 
         public enum AnimationTriggerType
         {
-            EnemyDamaged,
-            PlayFootstepSound
+            RockHowlBegin,
+            RockHowlEnd
         }
 
         #endregion

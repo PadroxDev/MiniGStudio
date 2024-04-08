@@ -31,12 +31,22 @@ namespace MiniGStudio
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
         {
             base.AnimationTriggerEvent(triggerType);
+            switch(triggerType)
+            {
+                case Enemy.AnimationTriggerType.RockHowlBegin:
+                    SpawnRocks();
+                    break;
+                case Enemy.AnimationTriggerType.RockHowlEnd:
+                    ChangeToChaseState();
+                    break;
+                default:
+                    break;
+            }
         }
 
         public override void EnterState()
         {
             base.EnterState();
-            SpawnRocks();
         }
 
         public override void ExitState()
