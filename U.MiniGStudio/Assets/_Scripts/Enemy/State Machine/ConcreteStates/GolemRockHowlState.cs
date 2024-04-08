@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace MiniGStudio
 {
+    [System.Serializable]
     public struct GolemRockHowlDesc
     {
         public Rock RockPrefab;
