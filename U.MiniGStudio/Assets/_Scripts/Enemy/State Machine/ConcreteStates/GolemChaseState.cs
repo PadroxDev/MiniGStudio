@@ -17,7 +17,7 @@ namespace MiniGStudio
 
         private const string CHASE_ANIM_PARAM = "Speed";
 
-        private float InitialTime;
+        private float _initialTime;
 
         private Descriptor _desc;
 
@@ -35,7 +35,7 @@ namespace MiniGStudio
         {
             base.EnterState();
             _enemy.Animator.SetFloat(CHASE_ANIM_PARAM, 0);
-            InitialTime = _desc.SmashCooldown;
+            _initialTime = _desc.SmashCooldown;
         }
 
         public override void ExitState()
@@ -60,7 +60,7 @@ namespace MiniGStudio
             {
                 if ((_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).magnitude >= _desc.MinimumSmashDistance)
                 {
-                    _desc.SmashCooldown = InitialTime;
+                    _desc.SmashCooldown = _initialTime;
                     _enemyStateMachine.ChangeState(_enemy.GroundSmashState);
                 }
             }

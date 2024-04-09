@@ -6,7 +6,16 @@ namespace MiniGStudio
 {
     public class GolemGroundSmashState : EnemyState
     {
+        [System.Serializable]
+        public struct Descriptor
+        {
+        }
+
         private const string GROUND_SMASH_ANIM_PARAM = "GroundSmash";
+
+        private int _smashNumber;
+
+        private Descriptor _desc;
 
         public GolemGroundSmashState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
         {
@@ -15,27 +24,27 @@ namespace MiniGStudio
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
         {
             base.AnimationTriggerEvent(triggerType);
-            _enemyStateMachine.ChangeState(_enemy.ChaseState);
+            /*
+            switch (triggerType)
+            {
+                case Enemy.AnimationTriggerType.GroundSmashEnded:
+                    _enemyStateMachine.ChangeState(_enemy.ChaseState);
+                    break;
+                case Enemy.AnimationTriggerType.LeftFistEnded:
+                    _enemyStateMachine.ChangeState(_enemy.ChaseState);
+                    break;
+                default:
+                    break;
+            }
+            */
+            //_enemyStateMachine.ChangeState(_enemy.ChaseState);
         }
 
         public override void EnterState()
         {
             base.EnterState();
 
-            int smashNumber = Random.Range(0, 3);
-
-            if (smashNumber == 0)
-            {
-                _enemy.Animator.SetTrigger(GROUND_SMASH_ANIM_PARAM);
-            }
-            else if (smashNumber == 1)
-            {
-
-            }
-            else
-            {
-                //_enemy.Animator.SetTrigger(LEFT_FIST_ANIM_PARAM);
-            }
+            _smashNumber = Random.Range(0, 3);
         }
 
         public override void ExitState()
@@ -46,6 +55,7 @@ namespace MiniGStudio
         public override void FrameUpdate()
         {
             base.FrameUpdate();
+            _enemy.Animator.SetTrigger(GROUND_SMASH_ANIM_PARAM);
         }
 
         public override void PhysicsUpdate()
