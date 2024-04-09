@@ -6,6 +6,7 @@ namespace MiniGStudio
 {
     public class GolemIdleState : EnemyState
     {
+        private const string IDLE_ANIM_PARAM = "Speed";
 
         public GolemIdleState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
         {
@@ -19,7 +20,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
-            _enemy.Animator.SetFloat("Speed", 0.0f);
+            _enemy.Animator.SetFloat(IDLE_ANIM_PARAM, 0.0f);
         }
 
         public override void ExitState()

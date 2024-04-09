@@ -6,6 +6,9 @@ namespace MiniGStudio
 {
     public class GolemRockFistState : EnemyState
     {
+        private const string RIGHT_FIST_ANIM_PARAM = "RightFist";
+        private const string LEFT_FIST_ANIM_PARAM = "LeftFist";
+
         public GolemRockFistState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
         {
         }
@@ -34,11 +37,11 @@ namespace MiniGStudio
 
             if (isRight == 0)
             {
-                _enemy.Animator.SetTrigger("RightFist");
+                _enemy.Animator.SetTrigger(RIGHT_FIST_ANIM_PARAM);
             }
             else
             {
-                _enemy.Animator.SetTrigger("LeftFist");
+                _enemy.Animator.SetTrigger(LEFT_FIST_ANIM_PARAM);
             }
         }
 
