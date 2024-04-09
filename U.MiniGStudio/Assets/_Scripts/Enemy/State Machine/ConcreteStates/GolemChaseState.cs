@@ -57,7 +57,7 @@ namespace MiniGStudio
 
             if (_desc.SmashCooldown <= 0.0f)
             {
-                TimerEnded();
+                //TimerEnded();
             }
 
             Vector3 direction = (_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).normalized;

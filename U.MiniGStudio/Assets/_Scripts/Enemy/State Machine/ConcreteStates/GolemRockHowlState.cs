@@ -5,28 +5,31 @@ using UnityEngine;
 
 namespace MiniGStudio
 {
-    [System.Serializable]
-    public struct GolemRockHowlDesc
-    {
-        public Rock RockPrefab;
-        public int RockCount;
-        public float SpawnRadius;
-        public Vector3 Center;
-        public float RockDistance;
-        public float RockLifespan;
-        public float ElevationDuration;
-    }
-        
     public class GolemRockHowlState : EnemyState
     {
-        public GolemRockHowlDesc Desc { get; private set; }
+        [System.Serializable]
+        public struct Descriptor
+        {
+            public Rock RockPrefab;
+            public int RockCount;
+            public float SpawnRadius;
+            public Vector3 Center;
+            public float RockDistance;
+            public float RockLifespan;
+            public float ElevationDuration;
+        }
 
         public List<Rock> Rocks = new List<Rock>();
         public List<Vector3> rockPositions = new List<Vector3>();
 
-        public GolemRockHowlState(Enemy enemy, EnemyStateMachine enemyStateMachine, GolemRockHowlDesc stateDesc) : base(enemy, enemyStateMachine)
+        public Descriptor Desc { get; private set; }
+
+        private int _rockHowlHash;
+
+        public GolemRockHowlState(Enemy enemy, EnemyStateMachine enemyStateMachine, Descriptor desc) : base(enemy, enemyStateMachine)
         {
-            Desc = stateDesc;
+            Desc = desc;
+            _rockHowlHash = Animator.StringToHash("RockHowl");
         }
 
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
@@ -48,6 +51,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            _enemy.Animator.SetTrigger(_rockHowlHash);
         }
 
         public override void ExitState()
@@ -75,6 +79,7 @@ namespace MiniGStudio
                     Rock newRock = (Rock)GameObject.Instantiate(Desc.RockPrefab, randomPos, Quaternion.identity);
                     rockPositions.Add(randomPos);
                     Rocks.Add(newRock);
+                    newRock.BindWithGolem(this);
                 }
             }
         }
