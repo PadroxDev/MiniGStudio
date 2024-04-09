@@ -64,7 +64,7 @@ namespace MiniGStudio
 
             Animator = GetComponent<Animator>();
 
-            StateMachine.Initialize(BirthState);
+            StateMachine.Initialize(RockHowlState);
         }
 
         private void Update()
