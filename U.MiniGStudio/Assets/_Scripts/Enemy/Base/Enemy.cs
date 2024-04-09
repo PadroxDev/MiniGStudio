@@ -40,7 +40,7 @@ namespace MiniGStudio
 
         #region Rock Howl Variables
 
-        [SerializeField] private GolemRockHowlDesc _rockHowlDescriptor;
+        [SerializeField] private GolemRockHowlState.Descriptor _rockHowlDescriptor;
 
         #endregion
 
@@ -72,10 +72,10 @@ namespace MiniGStudio
             StateMachine.CurrentEnemyState.FrameUpdate();
         }
 
-        //private void FixedUpdate()
-        //{
-        //    StateMachine.CurrentEnemyState.PhysicsUpdate();
-        //}
+        private void FixedUpdate()
+        {
+            StateMachine.CurrentEnemyState.PhysicsUpdate();
+        }
 
         #region Animation Triggers
 
@@ -89,6 +89,8 @@ namespace MiniGStudio
             BirthEnded,
             RightFistEnded,
             LeftFistEnded,
+            RockHowlBegin,
+            RockHowlEnd,
             GroundSmashEnded
         }
 
