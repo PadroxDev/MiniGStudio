@@ -16,10 +16,17 @@ namespace MiniGStudio
             _enemyStateMachine = enemyStateMachine;
         }
 
-        public virtual void EnterState() { }
+        public virtual void EnterState() 
+        {
+            _enemy.transform.LookAt(_enemy.PlayerRB.transform.position, Vector3.up);
+        }
+
         public virtual void ExitState() { }
+
         public virtual void FrameUpdate() { }
+
         public virtual void PhysicsUpdate() { }
+
         public virtual void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType) { }
     }
 }

@@ -7,6 +7,8 @@ namespace MiniGStudio
 {
     public class GolemBirthState : EnemyState
     {
+        private const string RISE_ANIM_PARAM = "Rise";
+
         public GolemBirthState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
         {
         }
@@ -14,12 +16,14 @@ namespace MiniGStudio
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
         {
             base.AnimationTriggerEvent(triggerType);
+            if (triggerType != Enemy.AnimationTriggerType.BirthEnded) return;
+            _enemyStateMachine.ChangeState(_enemy.ChaseState);
         }
 
         public override void EnterState()
         {
             base.EnterState();
-            Debug.Log("Hello from enter birth state");
+            _enemy.Animator.SetTrigger(RISE_ANIM_PARAM);
         }
 
         public override void ExitState()

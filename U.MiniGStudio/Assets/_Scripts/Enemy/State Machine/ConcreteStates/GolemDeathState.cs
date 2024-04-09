@@ -6,6 +6,9 @@ namespace MiniGStudio
 {
     public class GolemDeathState : EnemyState
     {
+
+        private const string COLLAPSE_ANIM_PARAM = "Collapse";
+
         public GolemDeathState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
         {
         }
@@ -18,6 +21,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            _enemy.Animator.SetTrigger(COLLAPSE_ANIM_PARAM);
         }
 
         public override void ExitState()
