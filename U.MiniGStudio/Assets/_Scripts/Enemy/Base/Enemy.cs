@@ -98,7 +98,9 @@ namespace MiniGStudio
             RockHowlBegin,
             RockHowlEnd,
             GroundSmashEnded,
-            GroundSmashed
+            GroundSmashed,
+            GrabRock,
+            ThrowRock
         }
 
         #endregion
