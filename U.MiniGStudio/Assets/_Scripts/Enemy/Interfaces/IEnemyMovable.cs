@@ -9,5 +9,6 @@ namespace MiniGStudio
         Rigidbody RB { get; set; }
 
         void MoveEnemy(Vector3 velocity);
+        void RotateEnemy(Vector3 dir);
     }
 }

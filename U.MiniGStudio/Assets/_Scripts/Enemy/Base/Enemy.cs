@@ -32,6 +32,12 @@ namespace MiniGStudio
 
         #endregion
 
+        #region Ground Smash Variables
+
+        [SerializeField] private GolemGroundSmashState.Descriptor _groundSmashDescriptor;
+
+        #endregion
+
         #region Rock Throw Variables
 
         [SerializeField] private GolemRockThrowState.Descriptor _rockThrowDescriptor;
@@ -55,7 +61,7 @@ namespace MiniGStudio
             RockFistState = new GolemRockFistState(this, StateMachine);
             RockThrowState = new GolemRockThrowState(this, StateMachine, _rockThrowDescriptor);
             RockHowlState = new GolemRockHowlState(this, StateMachine, _rockHowlDescriptor);
-            GroundSmashState = new GolemGroundSmashState(this, StateMachine);
+            GroundSmashState = new GolemGroundSmashState(this, StateMachine, _groundSmashDescriptor);
         }
 
         private void Start()
@@ -91,7 +97,8 @@ namespace MiniGStudio
             LeftFistEnded,
             RockHowlBegin,
             RockHowlEnd,
-            GroundSmashEnded
+            GroundSmashEnded,
+            GroundSmashed
         }
 
         #endregion
@@ -101,6 +108,12 @@ namespace MiniGStudio
         public void MoveEnemy(Vector3 velocity)
         {
             RB.velocity = velocity;
+        }
+
+        public void RotateEnemy(Vector3 direction)
+        {
+            Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
+            RB.MoveRotation(Quaternion.Slerp(transform.rotation, rot, 0.7f * Time.deltaTime));
         }
 
         #endregion

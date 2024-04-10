@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 namespace MiniGStudio
@@ -16,13 +16,15 @@ namespace MiniGStudio
             public Rock ChargedRockPrefab;
             public int RockCount;
             public float SpawnRadius;
-            public Vector3 Center;
             public float RockDistance;
             public float RockLifespan;
             public float ElevationDuration;
+            [Range(0, 1)] public float DurationVariation;
+            public float ElevationHeight;
             public float AverageSize;
             public float SizeVariation;
             [Range(0, 1)] public float ChargedRockPercentage;
+            public VisualEffect GroundSmokeVFX;
         }
 
         public List<Rock> Rocks = new List<Rock>();
@@ -81,7 +83,8 @@ namespace MiniGStudio
         {
             for (int i = 0; i < Desc.RockCount; i++)
             {
-                Vector3 randomPos = Helpers.RandomPointInCircle(Desc.Center, Desc.SpawnRadius);
+                Vector3 center = Vector3.down * Desc.ElevationHeight;
+                Vector3 randomPos = Helpers.RandomPointInCircle(center, Desc.SpawnRadius);
                 if (IsPositionValid(randomPos))
                 {
                     SpawnRandomRock(randomPos);
@@ -108,7 +111,8 @@ namespace MiniGStudio
 
         public void ChangeToChaseState()
         {
-            _enemyStateMachine.ChangeState(_enemy.ChaseState);
+            _enemy.RockThrowState.CurrentThrowableRock = Rocks[0];
+            _enemyStateMachine.ChangeState(_enemy.RockThrowState);
         }
 
         private bool IsPositionValid(Vector3 position)
