@@ -1,4 +1,5 @@
 using MiniGStudio;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -11,12 +12,17 @@ public class Rock : MonoBehaviour
     private float _duration;
     private Vector3 _start;
     private Vector3 _destination;
+    public bool Thrown;
 
     private GolemRockHowlState _rockHowlState;
     private GolemRockHowlState.Descriptor _desc;
+    private Renderer _renderer;
+    private Material _mat;
 
     public void Start()
     {
+        _renderer = GetComponent<Renderer>();
+        _mat = _renderer.material;
         elapsedTime = 0f;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -49,6 +55,14 @@ public class Rock : MonoBehaviour
             _vfx.Stop();
             Destroy(_vfx, 3);
         }
+
+        if(Thrown)
+        {
+            if(rb.velocity == Vector3.zero)
+            {
+                StartCoroutine(DissolveRock());
+            }
+        }
     }
 
     public void BindWithGolem(GolemRockHowlState rockHowlState) {
@@ -65,5 +79,19 @@ public class Rock : MonoBehaviour
     {
         rb.isKinematic = state;
         kinematicChanged = true;
+    }
+
+    private float _dissolveTimer = 0;
+    private IEnumerator DissolveRock()
+    {
+        while(_dissolveTimer < _desc.DissolveDuration)
+        {
+            _dissolveTimer += Time.deltaTime;
+            float a = Mathf.Clamp01(_dissolveTimer / _desc.DissolveDuration);
+            _mat.SetFloat("DissolveAmount", a);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }
