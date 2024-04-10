@@ -103,6 +103,12 @@ namespace MiniGStudio
             RB.velocity = velocity;
         }
 
+        public void RotateEnemy(Vector3 direction)
+        {
+            Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
+            RB.MoveRotation(Quaternion.Slerp(transform.rotation, rot, 0.7f * Time.deltaTime));
+        }
+
         #endregion
     }
 }

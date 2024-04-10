@@ -67,9 +67,8 @@ namespace MiniGStudio
 
             Vector3 direction = (_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).normalized;
             _enemy.transform.LookAt(_enemy.PlayerRB.transform.position, Vector3.up);
-            Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
-            _enemy.transform.rotation = Quaternion.Slerp(_enemy.transform.rotation, rot, 0.7f * Time.deltaTime);
             _enemy.MoveEnemy(direction * _desc.ChaseSpeed);
+            _enemy.RotateEnemy(direction);
             _enemy.Animator.SetFloat(CHASE_ANIM_PARAM, 1);
 
         }

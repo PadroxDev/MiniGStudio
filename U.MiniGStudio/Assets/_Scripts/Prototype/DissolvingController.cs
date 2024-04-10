@@ -31,7 +31,7 @@ namespace MiniGStudio {
 
             reverse = reverse == -1 ? 1 : -1;
 
-            yield return new WaitForSeconds(_delay);
+            yield return Helpers.GetWait(_delay);
 
             if (_vfxGraph is not null)
                 _vfxGraph.Play();
@@ -44,7 +44,7 @@ namespace MiniGStudio {
                     for (int i = 0; i < _skinnedMaterials.Length; i++) {
                         _skinnedMaterials[i].SetFloat("_DissolveAmount", counter);
                     }
-                    yield return new WaitForSeconds(_refreshRate);
+                    yield return Helpers.GetWait(_refreshRate);
                 }
             }
         }
