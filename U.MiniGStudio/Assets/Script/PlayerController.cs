@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
         _controllerMap = new InputManager();
     }
 
+    public void Start()
+    {
+        AudioListener.volume = PlayerPrefs.GetFloat("volume");
+    }
+
     private void OnEnable()
     {
         _controllerMap.Enable();
