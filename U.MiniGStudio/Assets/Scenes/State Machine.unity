@@ -123,61 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &301867943
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 301867944}
-  - component: {fileID: 301867945}
-  m_Layer: 0
-  m_Name: Ground Check
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &301867944
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301867943}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1726317906}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &301867945
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301867943}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 0.2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &321054404
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,19 +281,38 @@ MonoBehaviour:
   _chaseDescriptor:
     ChaseSpeed: 4
     FistDetectionRange: 5
-    SmashCooldown: 10
+    SmashCooldown: 4
     MinimumSmashDistance: 10
+  _groundSmashDescriptor:
+    SpikesPrefab:
+    - {fileID: 8424631472210774212, guid: c79e9a571b533ea4b8187c9ca4f0d87e, type: 3}
+    - {fileID: -6561482142810471687, guid: f5819ef2e54927d47ba8cf390227c637, type: 3}
+    - {fileID: 1327988962099594799, guid: b1b6de9af40ce8c4e88c73ea846ded5c, type: 3}
+    riseDelay: 0.3
+    waitDelay: 2
+    hideDelay: 0.3
+    targetHeight: 2
+    initialHeight: -2
+    whatIsGround:
+      serializedVersion: 2
+      m_Bits: 128
   _rockThrowDescriptor:
     ThrowStrength: 0
     MoveSpeed: 0
   _rockHowlDescriptor:
     RockPrefab: {fileID: 0}
+    ChargedRockPrefab: {fileID: 0}
     RockCount: 0
     SpawnRadius: 0
-    Center: {x: 0, y: 0, z: 0}
     RockDistance: 0
     RockLifespan: 0
     ElevationDuration: 0
+    DurationVariation: 0
+    ElevationHeight: 0
+    AverageSize: 0
+    SizeVariation: 0
+    ChargedRockPercentage: 0
+    GroundSmokeVFX: {fileID: 0}
 --- !u!54 &365186938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -483,13 +447,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666938319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
-  m_LocalPosition: {x: 0, y: 22.89, z: -19.85}
+  m_LocalRotation: {x: 0.30212024, y: 0, z: 0, w: 0.95326984}
+  m_LocalPosition: {x: 0, y: 19.22, z: -25.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 55, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.17, y: 0, z: 0}
 --- !u!114 &666938323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +516,7 @@ GameObject:
   - component: {fileID: 1183592544}
   - component: {fileID: 1183592543}
   - component: {fileID: 1183592542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +883,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726317904}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -952,7 +916,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 321054408}
-  - {fileID: 301867944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1726317907

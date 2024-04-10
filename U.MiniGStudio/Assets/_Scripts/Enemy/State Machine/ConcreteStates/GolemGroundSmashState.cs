@@ -14,6 +14,8 @@ namespace MiniGStudio
             public float waitDelay;
             public float hideDelay;
             public float targetHeight;
+            public float initialHeight;
+            public LayerMask whatIsGround;
         }
 
         private const string GROUND_SMASH_ANIM_PARAM = "GroundSmash";
@@ -33,28 +35,40 @@ namespace MiniGStudio
             switch (triggerType)
             {
                 case Enemy.AnimationTriggerType.GroundSmashed:
-                    Vector3 playerPos = _enemy.PlayerRB.transform.position;
-                    playerPos.y -= 2;
-                    Spike spike = GameObject.Instantiate(_desc.SpikesPrefab[Random.Range(0, _desc.SpikesPrefab.Length)], playerPos, Quaternion.identity);
-                    spike._desc = _desc;
+                    RaycastHit hit;
+                    if (Physics.Raycast(_enemy.PlayerRB.transform.position + Vector3.up, Vector3.down, out hit, 20, _desc.whatIsGround))
+                    {
+                        if (hit.collider.gameObject != _enemy.PlayerRB.gameObject)
+                        {
+                            Spike spikePrefab = _desc.SpikesPrefab[Random.Range(0, _desc.SpikesPrefab.Length)];
+                            Spike spike = GameObject.Instantiate(spikePrefab, hit.point + Vector3.up * _desc.initialHeight, Quaternion.identity);
+                            spike._desc = _desc;
+                        }
+                    }
                     break;
 
                 case Enemy.AnimationTriggerType.GroundSmashEnded:
                     if (_smashNumber == 0)
+                    {
                         _enemyStateMachine.ChangeState(_enemy.ChaseState);
-                    else _smashNumber--;
+                    }
+                    else 
+                    {
+                        _smashNumber--;
+                        _enemy.Animator.SetTrigger(GROUND_SMASH_ANIM_PARAM);
+                    }
                     break;
 
                 default:
                     break;
             }
-            //_enemyStateMachine.ChangeState(_enemy.ChaseState);
         }
 
         public override void EnterState()
         {
             base.EnterState();
             _smashNumber = Random.Range(0, 3);
+            _enemy.Animator.SetTrigger(GROUND_SMASH_ANIM_PARAM);
         }
 
         public override void ExitState()
@@ -65,7 +79,6 @@ namespace MiniGStudio
         public override void FrameUpdate()
         {
             base.FrameUpdate();
-            _enemy.Animator.SetTrigger(GROUND_SMASH_ANIM_PARAM);
         }
 
         public override void PhysicsUpdate()
