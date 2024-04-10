@@ -35,7 +35,8 @@ namespace MiniGStudio
                 case Enemy.AnimationTriggerType.GroundSmashed:
                     Vector3 playerPos = _enemy.PlayerRB.transform.position;
                     playerPos.y -= 2;
-                    GameObject.Instantiate(_desc.SpikesPrefab[Random.Range(0, _desc.SpikesPrefab.Length)], playerPos, Quaternion.identity);
+                    Spike spike = GameObject.Instantiate(_desc.SpikesPrefab[Random.Range(0, _desc.SpikesPrefab.Length)], playerPos, Quaternion.identity);
+                    spike._desc = _desc;
                     break;
 
                 case Enemy.AnimationTriggerType.GroundSmashEnded:

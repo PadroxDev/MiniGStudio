@@ -12,7 +12,7 @@ namespace MiniGStudio
             Hiding
         }
 
-        private GolemGroundSmashState.Descriptor _desc;
+        public GolemGroundSmashState.Descriptor _desc;
 
         private Vector3 _start;
         private Vector3 _dest;
