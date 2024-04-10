@@ -22,6 +22,7 @@ namespace MiniGStudio
         public GolemRockFistState RockFistState { get; set; }
         public GolemRockThrowState RockThrowState { get; set; }
         public GolemRockHowlState RockHowlState { get; set; }
+        public GolemGroundSmashState GroundSmashState { get; set; }
 
         #endregion
 
@@ -54,6 +55,7 @@ namespace MiniGStudio
             RockFistState = new GolemRockFistState(this, StateMachine);
             RockThrowState = new GolemRockThrowState(this, StateMachine, _rockThrowDescriptor);
             RockHowlState = new GolemRockHowlState(this, StateMachine, _rockHowlDescriptor);
+            GroundSmashState = new GolemGroundSmashState(this, StateMachine);
         }
 
         private void Start()
@@ -88,7 +90,8 @@ namespace MiniGStudio
             RightFistEnded,
             LeftFistEnded,
             RockHowlBegin,
-            RockHowlEnd
+            RockHowlEnd,
+            GroundSmashEnded
         }
 
         #endregion

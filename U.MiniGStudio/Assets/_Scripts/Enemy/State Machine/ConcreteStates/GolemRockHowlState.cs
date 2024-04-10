@@ -1,7 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 namespace MiniGStudio
 {
@@ -11,12 +13,16 @@ namespace MiniGStudio
         public struct Descriptor
         {
             public Rock RockPrefab;
+            public Rock ChargedRockPrefab;
             public int RockCount;
             public float SpawnRadius;
             public Vector3 Center;
             public float RockDistance;
             public float RockLifespan;
             public float ElevationDuration;
+            public float AverageSize;
+            public float SizeVariation;
+            [Range(0, 1)] public float ChargedRockPercentage;
         }
 
         public List<Rock> Rocks = new List<Rock>();
@@ -25,11 +31,13 @@ namespace MiniGStudio
         public Descriptor Desc { get; private set; }
 
         private int _rockHowlHash;
+        private Transform _rocksParent;
 
         public GolemRockHowlState(Enemy enemy, EnemyStateMachine enemyStateMachine, Descriptor desc) : base(enemy, enemyStateMachine)
         {
             Desc = desc;
             _rockHowlHash = Animator.StringToHash("RockHowl");
+            _rocksParent = new GameObject("Rocks").transform;
         }
 
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
@@ -76,12 +84,26 @@ namespace MiniGStudio
                 Vector3 randomPos = Helpers.RandomPointInCircle(Desc.Center, Desc.SpawnRadius);
                 if (IsPositionValid(randomPos))
                 {
-                    Rock newRock = (Rock)GameObject.Instantiate(Desc.RockPrefab, randomPos, Quaternion.identity);
-                    rockPositions.Add(randomPos);
-                    Rocks.Add(newRock);
-                    newRock.BindWithGolem(this);
+                    SpawnRandomRock(randomPos);
                 }
             }
+        }
+
+        private void SpawnRandomRock(Vector3 pos) {
+            bool charged = Random.Range(0.0f, 1.0f) <= Desc.ChargedRockPercentage;
+
+            Rock rock = (Rock)GameObject.Instantiate(charged ? Desc.ChargedRockPrefab : Desc.RockPrefab,
+                pos, Quaternion.Euler(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360)),
+                _rocksParent);
+            Rocks.Add(rock);
+            rockPositions.Add(pos);
+            rock.BindWithGolem(this);
+
+            Vector3 sca = Vector3.one * Desc.AverageSize;
+            sca.x *= 1 + Random.Range(-Desc.ChargedRockPercentage, Desc.ChargedRockPercentage);
+            sca.y *= 1 + Random.Range(-Desc.ChargedRockPercentage, Desc.ChargedRockPercentage);
+            sca.z *= 1 + Random.Range(-Desc.ChargedRockPercentage, Desc.ChargedRockPercentage);
+            rock.transform.localScale = sca;
         }
 
         public void ChangeToChaseState()

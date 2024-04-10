@@ -336,6 +336,19 @@ MonoBehaviour:
   _chaseDescriptor:
     ChaseSpeed: 4
     FistDetectionRange: 5
+    SmashCooldown: 10
+    MinimumSmashDistance: 10
+  _rockThrowDescriptor:
+    ThrowStrength: 0
+    MoveSpeed: 0
+  _rockHowlDescriptor:
+    RockPrefab: {fileID: 0}
+    RockCount: 0
+    SpawnRadius: 0
+    Center: {x: 0, y: 0, z: 0}
+    RockDistance: 0
+    RockLifespan: 0
+    ElevationDuration: 0
 --- !u!54 &365186938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -471,7 +484,7 @@ Transform:
   m_GameObject: {fileID: 666938319}
   serializedVersion: 2
   m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
-  m_LocalPosition: {x: 0, y: 17.07, z: -17.89}
+  m_LocalPosition: {x: 0, y: 22.89, z: -19.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -716,8 +729,15 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2539161771033397251, guid: ea4324e39606b124fbc8962ece08c421,
+        type: 3}
+      propertyPath: PlayerRB
+      value: 
+      objectReference: {fileID: 1726317905}
     m_RemovedComponents:
     - {fileID: 6461081161248779464, guid: ea4324e39606b124fbc8962ece08c421, type: 3}
+    - {fileID: 868785058089442610, guid: ea4324e39606b124fbc8962ece08c421, type: 3}
+    - {fileID: 2539161771033397251, guid: ea4324e39606b124fbc8962ece08c421, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -883,6 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1726317906}
   - component: {fileID: 1726317905}
+  - component: {fileID: 1726317907}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -934,6 +955,20 @@ Transform:
   - {fileID: 301867944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1726317907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726317904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0252bbd52fbf48469654d6a5ab12c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 12
+  body: {fileID: 1726317905}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
