@@ -32,6 +32,12 @@ namespace MiniGStudio
 
         #endregion
 
+        #region Ground Smash Variables
+
+        [SerializeField] private GolemGroundSmashState.Descriptor _groundSmashDescriptor;
+
+        #endregion
+
         #region Rock Throw Variables
 
         [SerializeField] private GolemRockThrowState.Descriptor _rockThrowDescriptor;
@@ -55,7 +61,7 @@ namespace MiniGStudio
             RockFistState = new GolemRockFistState(this, StateMachine);
             RockThrowState = new GolemRockThrowState(this, StateMachine, _rockThrowDescriptor);
             RockHowlState = new GolemRockHowlState(this, StateMachine, _rockHowlDescriptor);
-            GroundSmashState = new GolemGroundSmashState(this, StateMachine);
+            GroundSmashState = new GolemGroundSmashState(this, StateMachine, _groundSmashDescriptor);
         }
 
         private void Start()
@@ -91,7 +97,8 @@ namespace MiniGStudio
             LeftFistEnded,
             RockHowlBegin,
             RockHowlEnd,
-            GroundSmashEnded
+            GroundSmashEnded,
+            GroundSmashed
         }
 
         #endregion

@@ -9,6 +9,11 @@ namespace MiniGStudio
         [System.Serializable]
         public struct Descriptor
         {
+            public Spike[] SpikesPrefab;
+            public float riseDelay;
+            public float waitDelay;
+            public float hideDelay;
+            public float targetHeight;
         }
 
         private const string GROUND_SMASH_ANIM_PARAM = "GroundSmash";
@@ -17,33 +22,37 @@ namespace MiniGStudio
 
         private Descriptor _desc;
 
-        public GolemGroundSmashState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
+        public GolemGroundSmashState(Enemy enemy, EnemyStateMachine enemyStateMachine, Descriptor desc) : base(enemy, enemyStateMachine)
         {
+            _desc = desc;
         }
 
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
         {
             base.AnimationTriggerEvent(triggerType);
-            /*
             switch (triggerType)
             {
+                case Enemy.AnimationTriggerType.GroundSmashed:
+                    Vector3 playerPos = _enemy.PlayerRB.transform.position;
+                    playerPos.y -= 2;
+                    GameObject.Instantiate(_desc.SpikesPrefab[Random.Range(0, _desc.SpikesPrefab.Length)], playerPos, Quaternion.identity);
+                    break;
+
                 case Enemy.AnimationTriggerType.GroundSmashEnded:
-                    _enemyStateMachine.ChangeState(_enemy.ChaseState);
+                    if (_smashNumber == 0)
+                        _enemyStateMachine.ChangeState(_enemy.ChaseState);
+                    else _smashNumber--;
                     break;
-                case Enemy.AnimationTriggerType.LeftFistEnded:
-                    _enemyStateMachine.ChangeState(_enemy.ChaseState);
-                    break;
+
                 default:
                     break;
             }
-            */
             //_enemyStateMachine.ChangeState(_enemy.ChaseState);
         }
 
         public override void EnterState()
         {
             base.EnterState();
-
             _smashNumber = Random.Range(0, 3);
         }
 
