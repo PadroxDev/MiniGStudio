@@ -16,6 +16,7 @@ namespace MiniGStudio
         [SerializeField] private AudioSource MusicManager;
         [SerializeField] private AudioClip ButtonSound;
         [SerializeField] private AudioClip MenuSound;
+        [SerializeField] private EnvironementManager EnvironmentManager;
         [SerializeField] private AudioClip MainMusic;
 
         public void Awake()
@@ -30,6 +31,7 @@ namespace MiniGStudio
             MusicManager.Stop();
             MusicManager.clip = MainMusic;
             MusicManager.Play();
+            EnvironmentManager.gameObject.SetActive(true);
             StartMenuCanvas.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
