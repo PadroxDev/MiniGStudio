@@ -94,7 +94,6 @@ namespace MiniGStudio
             float sphereRadius = 0.5f;
             if (Physics.SphereCast(character.transform.position + Vector3.up, sphereRadius, Vector3.down, out hit, Mathf.Infinity))
             {
-                Debug.Log("Distance to ground: " + hit.distance);
                 return true;
             }
 
