@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8839208074495267342}
   - component: {fileID: -2511332089605685030}
+  - component: {fileID: 776714988755863635}
   m_Layer: 0
   m_Name: Pf_Spike1
   m_TagString: Untagged
@@ -55,6 +56,29 @@ MonoBehaviour:
     whatIsGround:
       serializedVersion: 2
       m_Bits: 0
+--- !u!136 &776714988755863635
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866282715089811857}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0.19, y: -1.42, z: 0}
 --- !u!1 &5454632672521206482
 GameObject:
   m_ObjectHideFlags: 0

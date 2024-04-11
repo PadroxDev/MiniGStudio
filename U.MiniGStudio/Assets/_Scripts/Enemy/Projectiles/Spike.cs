@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace MiniGStudio
 {
@@ -59,9 +60,12 @@ namespace MiniGStudio
                     }
                     break;
             }
+        }
 
-            
-
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (currentState != State.Rising) return;
+            Debug.Log("Ouch");
         }
     } 
 }

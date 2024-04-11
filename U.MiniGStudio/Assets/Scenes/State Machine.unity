@@ -123,28 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &5
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6007088031617361635, guid: ea4324e39606b124fbc8962ece08c421,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.77068007, z: 0, w: 0.63722235}
-  m_LocalPosition: {x: 0.1547, y: -0.0785, z: 0.2319}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 102666174}
-  m_LocalEulerAnglesHint: {x: 0, y: 100.83, z: 0}
---- !u!4 &102666174 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4645145978797856875, guid: 1ba52eb9b78e5434584aa4de47b36696,
-    type: 3}
-  m_PrefabInstance: {fileID: 6601791028431044420}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &321054404
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,13 +765,21 @@ PrefabInstance:
       propertyPath: PlayerRB
       value: 
       objectReference: {fileID: 1726317905}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _groundSmashDescriptor.SpikesPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: -2511332089605685030, guid: d15d7fa5ca8ffdd4cb911ce6ebe7ec43,
+        type: 3}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _groundSmashDescriptor.SpikesPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 9140465021310303429, guid: dea771fa31e39824793d4ea91cceaf01,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4645145978797856875, guid: 1ba52eb9b78e5434584aa4de47b36696,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ba52eb9b78e5434584aa4de47b36696, type: 3}
 --- !u!1660057539 &9223372036854775807
