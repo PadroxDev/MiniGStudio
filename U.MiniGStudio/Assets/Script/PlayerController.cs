@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private bool _isMovingHorizontal = false;
     private bool _isMovingVertical = false;
 
+    public delegate void Menu();
+    public event Menu onMenu;
     public delegate void Jump();
     public event Jump onJump;
     public delegate void Roll();
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         _controllerMap.Enable();
         _controllerMap.Player.Jump.started += ctx => JumpEvent();
         _controllerMap.Player.Roll.started += ctx => RollEvent();
+        _controllerMap.Player.Menu.started += ctx => MenuEvent();
     }
 
     private void OnDisable()
@@ -42,6 +45,11 @@ public class PlayerController : MonoBehaviour
     private void RollEvent()
     {
         onRoll?.Invoke();
+    }
+
+    private void MenuEvent()
+    {
+        onMenu?.Invoke();
     }
 
     public Vector2 GetMoveDirection() => _controllerMap.Player.Movement.ReadValue<Vector2>();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-namespace TopDownController
+namespace MiniGStudio
 {
     public class Character : MonoBehaviour, IDamageable
     {

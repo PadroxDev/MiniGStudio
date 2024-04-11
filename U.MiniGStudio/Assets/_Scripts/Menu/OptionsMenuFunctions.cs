@@ -8,15 +8,27 @@ namespace MiniGStudio
 {
     public class OptionsMenuFunctions : MonoBehaviour
     {
-        public void MyVolumeFunction(float Volume)
+        [SerializeField] private Canvas InGameMenuCanvas;
+        [SerializeField] private Canvas OptionsCanvas;
+        [SerializeField] private AudioClip ButtonSound;
+        [SerializeField] private Character Character;
+
+        private void Awake()
         {
-            PlayerPrefs.SetFloat("volume", Volume);
-            AudioListener.volume = PlayerPrefs.GetFloat("volume");
+            Character.Controller.onMenu += OnMenu;
         }
 
-        public void MyReturnFunction()
+        public void MyBackFunction()
         {
-            SceneManager.LoadScene("MainMenu");
+            SoundFXManager.instance.PlaySoundFXClip(ButtonSound, transform, 0.05f);
+            OptionsCanvas.gameObject.SetActive(false);
+            InGameMenuCanvas.gameObject.SetActive(true);
+        }
+
+        private void OnMenu()
+        {
+            OptionsCanvas.gameObject.SetActive(false);
+            InGameMenuCanvas.gameObject.SetActive(true);
         }
     }
 }

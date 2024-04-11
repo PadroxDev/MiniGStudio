@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static PlayerController;
 
-namespace TopDownController
+namespace MiniGStudio
 {
     public class CharacterMovingState : CharacterState
     {

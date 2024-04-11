@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TopDownController
+namespace MiniGStudio
 {
     public class FunctionsMenu : MonoBehaviour
     {

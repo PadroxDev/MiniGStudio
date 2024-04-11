@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using static PlayerController;
 
-namespace TopDownController
+namespace MiniGStudio
 {
     public class CharacterInAirState : CharacterState
     {

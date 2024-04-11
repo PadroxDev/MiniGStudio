@@ -1,4 +1,4 @@
-using TopDownController;
+using MiniGStudio;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
