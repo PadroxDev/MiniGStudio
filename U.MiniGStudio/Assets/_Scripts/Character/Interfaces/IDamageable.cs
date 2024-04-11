@@ -6,7 +6,7 @@ namespace MiniGStudio
 {
     public interface IDamageable
     {
-        void Damage(float amount);
+        bool Damage(float amount);
 
         void Die();
         bool IsDamageable { get; set; }
