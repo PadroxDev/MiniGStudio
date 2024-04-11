@@ -1180,7 +1180,7 @@ PrefabInstance:
     - target: {fileID: 2539161771033397251, guid: ea4324e39606b124fbc8962ece08c421,
         type: 3}
       propertyPath: _rockHowlDescriptor.ChargedRockPercentage
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2746374966866898559, guid: ea4324e39606b124fbc8962ece08c421,
         type: 3}

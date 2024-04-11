@@ -60,10 +60,8 @@ public class Rock : MonoBehaviour
 
         if(Thrown)
         {
-            if(rb.velocity == Vector3.zero)
-            {
-                StartCoroutine(DissolveRock());
-            }
+            if (rb.velocity.magnitude > 0.2f) return;
+            StartCoroutine(DissolveRock());
         }
     }
 
