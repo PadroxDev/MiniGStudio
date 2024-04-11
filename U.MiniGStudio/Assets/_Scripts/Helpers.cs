@@ -6,6 +6,19 @@ namespace MiniGStudio
 {
     public static class Helpers
     {
+        private static Camera _camera;
+        public static Camera Camera
+        {
+            get
+            {
+                if (_camera == null)
+                {
+                    _camera = Camera.main;
+                }
+                return _camera;
+            }
+        }
+
         public static Dictionary<float, WaitForSeconds> WaitDictionary = new();
         public static WaitForSeconds GetWait(float time)
         {
