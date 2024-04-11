@@ -62,11 +62,12 @@ namespace MiniGStudio
             }
         }
 
-        private void OnTriggerEnter(Collider collision)
+        public void OnCollisionEnter(Collision collision)
         {
             if (currentState != State.Rising) return;
-            if (!collision.TryGetComponent(out Character character)) return;
-            character.Damage(1);
+            Character character = collision.collider.GetComponentInChildren<Character>();
+            if (!character) return;
+            character.Damage(1.0f);
         }
     } 
 }

@@ -56,7 +56,6 @@ namespace MiniGStudio
             {
                 StateMachine.ChangeState(DyingState);
             }
-
         }
 
         private void FixedUpdate()

@@ -8,8 +8,9 @@ namespace MiniGStudio
     {
         private void OnTriggerEnter(Collider collision)
         {
-            if (!collision.TryGetComponent(out Character character)) return;
-            character.Damage(1);
+            Character character = collision.GetComponentInChildren<Character>();
+            if (!character) return;
+            character.Damage(1.0f);
         }
     }
 }
