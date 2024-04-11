@@ -1857,6 +1857,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558928249}
   m_CullTransparentMesh: 1
+--- !u!1 &624606300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624606301}
+  m_Layer: 0
+  m_Name: RochHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &624606301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624606300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.198, y: 0, z: 0.2234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1551163994}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &668285922
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,6 +5255,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -193.27872}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1551163994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4645145978797856875, guid: 1ba52eb9b78e5434584aa4de47b36696,
+    type: 3}
+  m_PrefabInstance: {fileID: 1701162926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1551621059
 GameObject:
   m_ObjectHideFlags: 0
@@ -6084,6 +6121,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1428571101628429582, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: m_Name
+      value: GFX
+      objectReference: {fileID: 0}
     - target: {fileID: 4554835345126525472, guid: 1ba52eb9b78e5434584aa4de47b36696,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6164,9 +6206,118 @@ PrefabInstance:
       propertyPath: PlayerRB
       value: 
       objectReference: {fileID: 219405426}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockThrowDescriptor.DustVFX
+      value: 
+      objectReference: {fileID: 8227463388629465819, guid: 420d812fd80c6fc4a9cb309023b7655b,
+        type: 3}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.RockCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.RockPrefab
+      value: 
+      objectReference: {fileID: 6279973917259114348, guid: 24daf3e7c2cb3ed43be264d6e9989860,
+        type: 3}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockThrowDescriptor.GolemHand
+      value: 
+      objectReference: {fileID: 624606301}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockThrowDescriptor.MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.AverageSize
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.SpawnRadius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.RockDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.RockLifespan
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.SizeVariation
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockThrowDescriptor.GrabDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.GroundSmokeVFX
+      value: 
+      objectReference: {fileID: 471983754403408603, guid: 52011796c900c354799c544a9f980527,
+        type: 3}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockThrowDescriptor.ThrowStrength
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.ElevationHeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.DissolveDuration
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.MinSpeedToDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.ChargedRockPrefab
+      value: 
+      objectReference: {fileID: 7477339547402963567, guid: a946069ece6c6bc44bf2d1b78c145d31,
+        type: 3}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.DurationVariation
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.ElevationDuration
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _rockHowlDescriptor.ChargedRockPercentage
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3477607679062087910, guid: 1ba52eb9b78e5434584aa4de47b36696, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4645145978797856875, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 624606301}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ba52eb9b78e5434584aa4de47b36696, type: 3}
 --- !u!1 &1701322908
