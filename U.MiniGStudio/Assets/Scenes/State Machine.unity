@@ -767,6 +767,16 @@ PrefabInstance:
       objectReference: {fileID: 1726317905}
     - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
         type: 3}
+      propertyPath: _chaseDescriptor.SmashCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _chaseDescriptor.MinimumSmashDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
       propertyPath: _groundSmashDescriptor.SpikesPrefab.Array.data[0]
       value: 
       objectReference: {fileID: -2511332089605685030, guid: d15d7fa5ca8ffdd4cb911ce6ebe7ec43,

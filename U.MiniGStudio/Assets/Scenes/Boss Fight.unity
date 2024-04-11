@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.39490548, g: 0.17851126, b: 0.17467752, a: 1}
+  m_IndirectSpecularColor: {r: 0.3949402, g: 0.17852202, b: 0.17470089, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -846,7 +846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210494819}
   - component: {fileID: 210494818}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16249,6 +16249,11 @@ PrefabInstance:
       objectReference: {fileID: 219405426}
     - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
         type: 3}
+      propertyPath: _chaseDescriptor.ChaseSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
       propertyPath: _rockThrowDescriptor.DustVFX
       value: 
       objectReference: {fileID: 8227463388629465819, guid: 420d812fd80c6fc4a9cb309023b7655b,
@@ -16257,6 +16262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _rockHowlDescriptor.RockCount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _chaseDescriptor.SmashCooldown
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
         type: 3}
@@ -16317,6 +16327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
         type: 3}
+      propertyPath: _chaseDescriptor.FistDetectionRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
       propertyPath: _rockHowlDescriptor.ElevationHeight
       value: 4
       objectReference: {fileID: 0}
@@ -16329,6 +16344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _rockHowlDescriptor.MinSpeedToDamage
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _chaseDescriptor.MinimumSmashDistance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
         type: 3}
@@ -16351,6 +16371,18 @@ PrefabInstance:
       propertyPath: _rockHowlDescriptor.ChargedRockPercentage
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _groundSmashDescriptor.SpikesPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: -2511332089605685030, guid: d15d7fa5ca8ffdd4cb911ce6ebe7ec43,
+        type: 3}
+    - target: {fileID: 5757125499473199349, guid: 1ba52eb9b78e5434584aa4de47b36696,
+        type: 3}
+      propertyPath: _groundSmashDescriptor.SpikesPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 9140465021310303429, guid: dea771fa31e39824793d4ea91cceaf01,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3477607679062087910, guid: 1ba52eb9b78e5434584aa4de47b36696, type: 3}
@@ -17654,7 +17686,7 @@ GameObject:
   - component: {fileID: 1955941577}
   - component: {fileID: 1955941576}
   - component: {fileID: 1955941575}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
