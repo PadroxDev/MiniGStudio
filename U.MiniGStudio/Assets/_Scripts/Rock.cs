@@ -12,6 +12,7 @@ public class Rock : MonoBehaviour
     private float _duration;
     private Vector3 _start;
     private Vector3 _destination;
+    private VisualEffect _debrisVFX;
     public bool Thrown;
 
     private GolemRockHowlState _rockHowlState;
@@ -26,6 +27,7 @@ public class Rock : MonoBehaviour
         elapsedTime = 0f;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
+        _debrisVFX = GetComponentInChildren<VisualEffect>();
 
         float variation = Random.Range(-_desc.DurationVariation, _desc.DurationVariation);
         _duration = _desc.ElevationDuration + _desc.ElevationDuration * variation;
@@ -81,17 +83,23 @@ public class Rock : MonoBehaviour
         kinematicChanged = true;
     }
 
-    private float _dissolveTimer = 0;
     private IEnumerator DissolveRock()
     {
+        _debrisVFX.Stop();
+
+        float _dissolveTimer = 0;
         while(_dissolveTimer < _desc.DissolveDuration)
         {
             _dissolveTimer += Time.deltaTime;
             float a = Mathf.Clamp01(_dissolveTimer / _desc.DissolveDuration);
-            _mat.SetFloat("DissolveAmount", a);
+            _mat.SetFloat("_DissolveAmount", a);
             yield return null;
         }
 
         Destroy(gameObject);
+    }
+
+    public void EnableDebris() {
+        _debrisVFX.Play();
     }
 }

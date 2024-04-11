@@ -70,7 +70,7 @@ namespace MiniGStudio
 
             Animator = GetComponent<Animator>();
 
-            StateMachine.Initialize(BirthState);
+            StateMachine.Initialize(RockHowlState);
         }
 
         private void Update()
@@ -100,7 +100,8 @@ namespace MiniGStudio
             GroundSmashEnded,
             GroundSmashed,
             GrabRock,
-            ThrowRock
+            ThrowRock,
+            ThrowEnded,
         }
 
         #endregion
@@ -115,7 +116,7 @@ namespace MiniGStudio
         public void RotateEnemy(Vector3 direction)
         {
             Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
-            RB.MoveRotation(Quaternion.Slerp(transform.rotation, rot, 0.7f * Time.deltaTime));
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 10f * Time.deltaTime);
         }
 
         #endregion
