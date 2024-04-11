@@ -21,8 +21,6 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
-        //Go bar semaine pro ? 
-        //AudioListener.volume = PlayerPrefs.GetFloat("volume");
     }
 
     private void OnEnable()
@@ -53,5 +51,9 @@ public class PlayerController : MonoBehaviour
         onMenu?.Invoke();
     }
 
-    public Vector2 GetMoveDirection() => _controllerMap.Player.Movement.ReadValue<Vector2>();
+    public Vector2 GetMoveDirection()
+    {
+        if (!gameObject.activeSelf) return Vector2.zero;
+        return _controllerMap.Player.Movement.ReadValue<Vector2>();
+    }
 }

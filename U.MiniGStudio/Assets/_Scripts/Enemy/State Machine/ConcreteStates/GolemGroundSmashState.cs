@@ -34,7 +34,7 @@ namespace MiniGStudio
             base.AnimationTriggerEvent(triggerType);
             switch (triggerType)
             {
-                case Enemy.AnimationTriggerType.GroundSmashed:
+            case Enemy.AnimationTriggerType.GroundSmashed:
                     RaycastHit hit;
                     if (Physics.Raycast(_enemy.PlayerRB.transform.position + Vector3.up, Vector3.down, out hit, 20, _desc.whatIsGround))
                     {

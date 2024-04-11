@@ -42,7 +42,8 @@ namespace MiniGStudio
 
         private void OnMenu()
         {
-            if (InGameMenuCanvas.gameObject.activeSelf) return; 
+            if (InGameMenuCanvas.gameObject.activeSelf) return;
+            if (Time.timeScale < 0.1f) return; 
             InGameMenuCanvas.gameObject.SetActive(true);
             if (OptionsCanvas.gameObject.activeSelf) return;
             SoundFXManager.instance.PlaySoundFXClip(MenuSound, transform, 0.05f);

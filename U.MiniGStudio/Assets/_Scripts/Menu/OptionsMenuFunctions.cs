@@ -27,8 +27,11 @@ namespace MiniGStudio
 
         private void OnMenu()
         {
-            OptionsCanvas.gameObject.SetActive(false);
-            InGameMenuCanvas.gameObject.SetActive(true);
+            if (OptionsCanvas.gameObject.activeSelf)
+            {
+                OptionsCanvas.gameObject.SetActive(false);
+                InGameMenuCanvas.gameObject.SetActive(true);
+            }
         }
     }
 }
