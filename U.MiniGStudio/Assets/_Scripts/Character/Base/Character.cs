@@ -15,6 +15,8 @@ namespace MiniGStudio
         public PlayerController Controller;
         public Rigidbody RB;
 
+        [SerializeField] private ScreenShake _screenShake;
+
         [SerializeField] private CharacterJumpingState.Descriptor _jumpStateDescriptor;
         [SerializeField] private CharacterMovingState.Descriptor _movingStateDescriptor;
         [SerializeField] private CharacterInAirState.Descriptor _InAirStateDescriptor;
@@ -55,6 +57,7 @@ namespace MiniGStudio
             if (Input.GetKey("up"))
             {
                 StateMachine.ChangeState(DyingState);
+                _screenShake.start = true;
             }
         }
 
@@ -66,6 +69,7 @@ namespace MiniGStudio
         public bool Damage(float amount)
         {
             if (!IsDamageable) return false;
+            _screenShake.start = true;
             CurrentHealth -= amount;
 
             if (CurrentHealth < 0f)
