@@ -26,8 +26,6 @@ namespace MiniGStudio
             _elapsedTime = 0.0f;
             _start = transform.position;
             _dest = transform.position + Vector3.up * (_desc.targetHeight - _desc.initialHeight);
-            Debug.Log(_start);
-            Debug.Log(_dest);
             currentState = State.Rising;
         }
 
@@ -61,6 +59,9 @@ namespace MiniGStudio
                     }
                     break;
             }
+
+            
+
         }
     } 
 }
