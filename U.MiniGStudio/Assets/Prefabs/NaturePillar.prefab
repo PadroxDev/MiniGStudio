@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6514505702261831838}
   - component: {fileID: 7203622885585263810}
   - component: {fileID: 918559744967470713}
+  - component: {fileID: 1340580992881632882}
   m_Layer: 0
   m_Name: NaturePillar
   m_TagString: Untagged
@@ -106,6 +107,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &1340580992881632882
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3350184399065012649}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6054484, y: 4.003646, z: 1.6054484}
+  m_Center: {x: -0.00000005960464, y: 1.9956932, z: -0.00000017881392}
 --- !u!1 &8359236145119675205
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +254,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5738119570433528232}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ee03ff8e8389334ca9c8d848abce467,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8455968991114246401}
   m_SourcePrefab: {fileID: 100100000, guid: 6ee03ff8e8389334ca9c8d848abce467, type: 3}
 --- !u!1 &3689678151526950667 stripped
 GameObject:
@@ -260,6 +286,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &8455968991114246401
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689678151526950667}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!4 &4071128815453666737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ee03ff8e8389334ca9c8d848abce467,

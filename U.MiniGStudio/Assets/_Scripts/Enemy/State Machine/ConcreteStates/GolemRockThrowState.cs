@@ -141,7 +141,7 @@ namespace MiniGStudio
             {
                 rb.isKinematic = false;
                 CurrentThrowableRock.transform.parent = null;
-                rb.velocity = Vector3.one * 0.01f;
+                rb.velocity = Vector3.one * 1f;
                 rb.AddForce(dir * _desc.ThrowStrength, ForceMode.Impulse);
             }
             if (CurrentThrowableRock.TryGetComponent(out Collider collider)) {
