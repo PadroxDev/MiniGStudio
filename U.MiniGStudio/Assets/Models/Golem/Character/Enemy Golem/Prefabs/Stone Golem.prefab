@@ -151,6 +151,7 @@ Transform:
   m_Children:
   - {fileID: 7413111710830587530}
   - {fileID: 3842267035396275494}
+  - {fileID: 4720607433946700455}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6461081161248779464
@@ -192,18 +193,37 @@ MonoBehaviour:
     FistDetectionRange: 5
     SmashCooldown: 4
     MinimumSmashDistance: 2
+  _groundSmashDescriptor:
+    SpikesPrefab: []
+    riseDelay: 0
+    waitDelay: 0
+    hideDelay: 0
+    targetHeight: 0
+    initialHeight: 0
+    whatIsGround:
+      serializedVersion: 2
+      m_Bits: 0
   _rockThrowDescriptor:
     ThrowStrength: 10
     MoveSpeed: 3
+    GrabDistance: 0
+    GolemHand: {fileID: 0}
   _rockHowlDescriptor:
     RockPrefab: {fileID: 2505156331028446465, guid: 3b72a10fd800faf499836df28d692fa3,
       type: 3}
+    ChargedRockPrefab: {fileID: 0}
     RockCount: 3
     SpawnRadius: 20
-    Center: {x: 0, y: 0, z: 0}
     RockDistance: 0
     RockLifespan: 0
     ElevationDuration: 0
+    DurationVariation: 0
+    ElevationHeight: 0
+    AverageSize: 0
+    SizeVariation: 0
+    ChargedRockPercentage: 0
+    GroundSmokeVFX: {fileID: 0}
+    DissolveDuration: 0
 --- !u!54 &868785058089442610
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2540,6 +2560,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2356243361804276000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4852207246308096361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4720607433946700455}
+  m_Layer: 0
+  m_Name: Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4720607433946700455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852207246308096361}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2923214591024320646}
+  m_Father: {fileID: 1101820335844390578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5258661612776849700
 GameObject:
   m_ObjectHideFlags: 0
@@ -4187,6 +4239,59 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.014988184, y: -0.20685342, z: -0.00034952164}
     m_Extent: {x: 1.0491581, y: 0.57432365, z: 1.066738}
   m_DirtyAABB: 0
+--- !u!1 &7978808760647554937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2923214591024320646}
+  - component: {fileID: 3954070228762328061}
+  m_Layer: 0
+  m_Name: LeftPunchHB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2923214591024320646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978808760647554937}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4720607433946700455}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3954070228762328061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978808760647554937}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8005880934403034584
 GameObject:
   m_ObjectHideFlags: 0

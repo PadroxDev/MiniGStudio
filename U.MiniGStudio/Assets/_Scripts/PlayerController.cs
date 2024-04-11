@@ -1,4 +1,4 @@
-using UnityEditor.Build;
+//using UnityEditor.Build;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("volume");
+        //Go bar semaine pro ? 
+        //AudioListener.volume = PlayerPrefs.GetFloat("volume");
     }
 
     private void OnEnable()
