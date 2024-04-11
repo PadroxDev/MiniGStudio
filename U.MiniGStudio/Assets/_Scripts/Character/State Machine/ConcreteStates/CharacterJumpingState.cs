@@ -17,6 +17,7 @@ namespace MiniGStudio
             public Transform CameraTransform;
             public float Speed;
             public float MaxSpeed;
+            public AudioClip JumpSound;
         }
 
         private Descriptor _desc;

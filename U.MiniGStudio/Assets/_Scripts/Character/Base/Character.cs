@@ -64,15 +64,16 @@ namespace MiniGStudio
             StateMachine.CurrentCharacterState.PhysicsUpdate();
         }
 
-        public void Damage(float amount)
+        public bool Damage(float amount)
         {
-            if (!IsDamageable) return;
+            if (!IsDamageable) return false;
             CurrentHealth -= amount;
 
             if (CurrentHealth < 0f)
             {
                 Die();
             }
+            return true;
         }
 
         public void Die()

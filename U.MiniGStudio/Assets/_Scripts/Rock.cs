@@ -102,4 +102,13 @@ public class Rock : MonoBehaviour
     public void EnableDebris() {
         _debrisVFX.Play();
     }
+
+    public virtual void OnCollisionEnter(Collision collider)
+    {
+        if (!Thrown) return;
+        if (collider.transform.tag != "Player") return; // Replace this line with the next one
+        //if (!other.TryGetComponent(out Character character)) return;
+        if (rb.velocity.magnitude < _desc.MinSpeedToDamage) return;
+        //character.Damage(1);
+    }
 }

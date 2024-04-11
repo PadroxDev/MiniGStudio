@@ -26,6 +26,7 @@ namespace MiniGStudio
             [Range(0, 1)] public float ChargedRockPercentage;
             public VisualEffect GroundSmokeVFX;
             public float DissolveDuration;
+            public float MinSpeedToDamage;
         }
 
         public List<Rock> Rocks = new List<Rock>();

@@ -11,10 +11,11 @@ namespace MiniGStudio
         [System.Serializable]
         public struct Descriptor
         {
-            public float DashPower;
+            public float RollPower;
             public Transform CameraTransform;
             public float Speed;
             public float MaxSpeed;
+            public AudioClip rollSound;
         }
 
         private Descriptor _desc;
@@ -35,7 +36,7 @@ namespace MiniGStudio
         {
             base.EnterState();
             character.Animator.SetTrigger(ROLLING_TRIGGER);
-            character.RB.AddForce(_desc.CameraTransform.forward * _desc.DashPower, ForceMode.Impulse);
+            character.RB.AddForce(_desc.CameraTransform.forward * _desc.RollPower, ForceMode.Impulse);
             character.IsDamageable = false;
         }
 

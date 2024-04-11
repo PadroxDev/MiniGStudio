@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
+using UnityEngine.VFX;
 
 namespace MiniGStudio
 {
@@ -14,12 +15,14 @@ namespace MiniGStudio
             public float MoveSpeed;
             public float GrabDistance;
             public Transform GolemHand;
+            public VisualEffect DustVFX;
         }
 
         private enum State
         {
             Trace,
             Grabbing,
+            Throwing,
             Done
         }
 
@@ -53,6 +56,9 @@ namespace MiniGStudio
                 case Enemy.AnimationTriggerType.ThrowEnded:
                     ChangeToChaseState();
                     break;
+                case Enemy.AnimationTriggerType.GrabDust:
+                    SpawnDustVFX();
+                    break;
                 default:
                     break;
             }
@@ -83,7 +89,11 @@ namespace MiniGStudio
                     MoveTowardsRock();
                     break;
                 case State.Grabbing:
-                    Vector3 dir = (CurrentThrowableRock.transform.position - _enemy.transform.position);
+                    Vector3 dir = (CurrentThrowableRock.transform.position - _enemy.transform.position).normalized;
+                    _enemy.RotateEnemy(dir);
+                    break;
+                case State.Throwing:
+                    dir = (_enemy.PlayerRB.position - _enemy.transform.position).normalized;
                     _enemy.RotateEnemy(dir);
                     break;
                 case State.Done:
@@ -120,6 +130,7 @@ namespace MiniGStudio
             if(CurrentThrowableRock.TryGetComponent(out Collider collider)) {
                 collider.enabled = false;
             }
+            _state = State.Throwing;
         }
 
         public void ThrowRock()
@@ -132,13 +143,13 @@ namespace MiniGStudio
                 CurrentThrowableRock.transform.parent = null;
                 rb.velocity = Vector3.one * 0.01f;
                 rb.AddForce(dir * _desc.ThrowStrength, ForceMode.Impulse);
-                CurrentThrowableRock.Thrown = true;
-                _state = State.Done; 
             }
             if (CurrentThrowableRock.TryGetComponent(out Collider collider)) {
                 collider.enabled = true;
             }
             CurrentThrowableRock.EnableDebris();
+            CurrentThrowableRock.Thrown = true;
+            _state = State.Done;
         }
 
         public void ChangeToChaseState()
@@ -149,6 +160,13 @@ namespace MiniGStudio
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+        }
+
+        public void SpawnDustVFX()
+        {
+            Vector3 pos = CurrentThrowableRock.transform.position - CurrentThrowableRock.transform.localScale * 0.4f;
+            VisualEffect dust = GameObject.Instantiate(_desc.DustVFX, pos, Quaternion.identity, Helpers.VFXParent);
+            GameObject.Destroy(dust, 4f);
         }
     }
 }
