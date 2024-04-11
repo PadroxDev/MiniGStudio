@@ -70,7 +70,7 @@ namespace MiniGStudio
 
             Animator = GetComponent<Animator>();
 
-            StateMachine.Initialize(RockHowlState);
+            StateMachine.Initialize(BirthState);
         }
 
         private void Update()
@@ -99,6 +99,7 @@ namespace MiniGStudio
             RockHowlEnd,
             GroundSmashEnded,
             GroundSmashed,
+            GrabDust,
             GrabRock,
             ThrowRock,
             ThrowEnded,

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_GlowingRock
+  m_Name: M_ThrowableGlowingRock
   m_Shader: {fileID: -6465566751694194690, guid: 5a073a4d20e4203419ca936dd92f4824,
     type: 3}
   m_Parent: {fileID: 0}
