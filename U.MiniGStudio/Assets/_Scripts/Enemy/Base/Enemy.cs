@@ -99,6 +99,7 @@ namespace MiniGStudio
             RockHowlEnd,
             GroundSmashEnded,
             GroundSmashed,
+            GrabDust,
             GrabRock,
             ThrowRock,
             ThrowEnded,
