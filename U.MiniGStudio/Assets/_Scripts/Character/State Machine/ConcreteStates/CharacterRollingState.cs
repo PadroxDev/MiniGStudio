@@ -35,6 +35,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            SoundFXManager.instance.PlaySoundFXClip(_desc.rollSound, character.transform, 1);
             character.Animator.SetTrigger(ROLLING_TRIGGER);
             character.RB.AddForce(_desc.CameraTransform.forward * _desc.RollPower, ForceMode.Impulse);
             character.IsDamageable = false;

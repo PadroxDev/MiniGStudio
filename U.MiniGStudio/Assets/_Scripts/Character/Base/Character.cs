@@ -16,6 +16,12 @@ namespace MiniGStudio
         public Rigidbody RB;
 
         [SerializeField] private ScreenShake _screenShake;
+        [SerializeField] private AudioSource _musicSource;
+        [SerializeField] private AudioClip _OnHitClip;
+        [SerializeField] private AudioClip _onDeathClip;
+        [SerializeField] private AudioClip _lostClip;
+        [SerializeField] private Canvas _creditsCanvas;
+        [SerializeField] private EnvironementManager _environementManager;
 
         [SerializeField] private CharacterJumpingState.Descriptor _jumpStateDescriptor;
         [SerializeField] private CharacterMovingState.Descriptor _movingStateDescriptor;
@@ -54,11 +60,6 @@ namespace MiniGStudio
         private void Update()
         {
             StateMachine.CurrentCharacterState.FrameUpdate();
-            if (Input.GetKey("up"))
-            {
-                StateMachine.ChangeState(DyingState);
-                _screenShake.start = true;
-            }
         }
 
         private void FixedUpdate()
@@ -69,12 +70,19 @@ namespace MiniGStudio
         public bool Damage(float amount)
         {
             if (!IsDamageable) return false;
+            if (StateMachine.CurrentCharacterState == DyingState) return false;
+
             _screenShake.start = true;
             CurrentHealth -= amount;
 
             if (CurrentHealth < 0f)
             {
                 Die();
+                StartCoroutine(LostGame(5f));
+            }
+            else
+            {
+                SoundFXManager.instance.PlaySoundFXClip(_OnHitClip, transform, 1);
             }
             return true;
         }
@@ -82,6 +90,24 @@ namespace MiniGStudio
         public void Die()
         {
             StateMachine.ChangeState(DyingState);
+            SoundFXManager.instance.PlaySoundFXClip(_onDeathClip, transform, 1);
+        }
+
+        private IEnumerator LostGame(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            _environementManager.gameObject.SetActive(false);
+            _musicSource.Stop();
+            _musicSource.clip = _lostClip;
+            _musicSource.Play();
+            _creditsCanvas.gameObject.SetActive(true);
+            StartCoroutine(Quit(25f));
+        }
+
+        private IEnumerator Quit(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            Application.Quit();
         }
 
         private void AnimationTriggerEvent(AnimationTriggerType triggerType)

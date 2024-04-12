@@ -6,7 +6,6 @@ namespace MiniGStudio
     public struct EnvironnementDesc
     {
         public AudioSource[] audioSources;
-        public AudioClip rainSound;
         public AudioClip[] thunderNearSounds;
         public AudioClip[] thunderFarSounds;
     }
@@ -47,6 +46,14 @@ namespace MiniGStudio
                 {
                     SoundFXManager.instance.PlaySoundFXClip(randomClip, source.transform, 1.0f);
                 }
+            }
+        }
+
+        private void OnDisable()
+        {
+            foreach (var source in _desc.audioSources)
+            {
+                source.gameObject.SetActive(false);
             }
         }
     }

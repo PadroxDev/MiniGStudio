@@ -37,6 +37,7 @@ namespace MiniGStudio
         public override void EnterState()
         {
             base.EnterState();
+            SoundFXManager.instance.PlaySoundFXClip(_desc.JumpSound, character.transform, 1);
             character.Animator.SetBool(IS_GROUNDED_PARAM, false);
             character.RB.AddForce(Vector3.up * _desc.JumpPower, ForceMode.Impulse);
         }
