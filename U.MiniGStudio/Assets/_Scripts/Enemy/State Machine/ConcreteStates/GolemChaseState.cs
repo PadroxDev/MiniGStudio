@@ -47,7 +47,8 @@ namespace MiniGStudio
         {
             base.FrameUpdate();
 
-            if ((_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).magnitude < _desc.FistDetectionRange)
+            float distance = Vector3.Distance(_enemy.PlayerRB.transform.position, _enemy.RB.transform.position);
+            if (distance < _desc.FistDetectionRange)
             {
                 _enemyStateMachine.ChangeState(_enemy.RockFistState);
                 return;
@@ -57,7 +58,8 @@ namespace MiniGStudio
 
             if (_desc.SmashCooldown <= _elapsedTime)
             {
-                if ((_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).magnitude >= _desc.MinimumSmashDistance)
+
+                if (distance >= _desc.MinimumSmashDistance)
                 {
                     _elapsedTime = 0.0f;
                     _enemyStateMachine.ChangeState(_enemy.GroundSmashState);

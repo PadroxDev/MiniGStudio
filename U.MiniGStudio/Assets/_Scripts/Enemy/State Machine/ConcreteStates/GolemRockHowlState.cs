@@ -27,6 +27,7 @@ namespace MiniGStudio
             public VisualEffect GroundSmokeVFX;
             public float DissolveDuration;
             public float MinSpeedToDamage;
+            public BombManager BombPrefab;
         }
 
         public List<Rock> Rocks = new List<Rock>();

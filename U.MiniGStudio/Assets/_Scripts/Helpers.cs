@@ -33,5 +33,9 @@ namespace MiniGStudio
             float z = center.z + Mathf.Cos(angle) * radius;
             return new Vector3(x, center.y, z);
         }
+
+        public static float Clamp(float value, float min, float max) {
+            return Mathf.Min(Mathf.Max(min, value), max);
+        }
     }
 }

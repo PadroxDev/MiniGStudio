@@ -5,20 +5,20 @@ using UnityEngine.VFX;
 
 public class Rock : MonoBehaviour
 {
-    private float                   elapsedTime;
-    private bool                    kinematicChanged = false;
-    private Rigidbody               rb;
-    private VisualEffect _vfx;
-    private float _duration;
-    private Vector3 _start;
-    private Vector3 _destination;
-    private VisualEffect _debrisVFX;
+    protected float                   elapsedTime;
+    protected bool                    kinematicChanged = false;
+    protected Rigidbody               rb;
+    protected VisualEffect _vfx;
+    protected float _duration;
+    protected Vector3 _start;
+    protected Vector3 _destination;
+    protected VisualEffect _debrisVFX;
     public bool Thrown;
 
-    private GolemRockHowlState _rockHowlState;
-    private GolemRockHowlState.Descriptor _desc;
-    private Renderer _renderer;
-    private Material _mat;
+    protected GolemRockHowlState _rockHowlState;
+    protected GolemRockHowlState.Descriptor _desc;
+    protected Renderer _renderer;
+    protected Material _mat;
 
     public void Start()
     {
@@ -43,8 +43,6 @@ public class Rock : MonoBehaviour
         if (IsExpired())
         {
             GameObject.Destroy(gameObject);
-            _rockHowlState.Rocks.Remove(this);
-            _rockHowlState.rockPositions.Remove(transform.position);
         }
         else if (elapsedTime < _duration)
         {
@@ -108,5 +106,10 @@ public class Rock : MonoBehaviour
         //if (!other.TryGetComponent(out Character character)) return;
         if (rb.velocity.magnitude < _desc.MinSpeedToDamage) return;
         //character.Damage(1);
+    }
+
+    private void OnDestroy() {
+        _rockHowlState.Rocks.Remove(this);
+        _rockHowlState.rockPositions.Remove(transform.position);
     }
 }
