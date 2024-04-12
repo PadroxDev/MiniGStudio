@@ -12,6 +12,7 @@ public class Rock : MonoBehaviour
     protected float _duration;
     protected Vector3 _start;
     protected Vector3 _destination;
+    public Vector3 InitPos;
     protected VisualEffect _debrisVFX;
     public bool Thrown;
 
@@ -79,6 +80,11 @@ public class Rock : MonoBehaviour
         kinematicChanged = true;
     }
 
+    public void Grab() {
+        _rockHowlState.Rocks.Remove(this);
+        _rockHowlState.rockPositions.Remove(InitPos);
+    }
+
     private IEnumerator DissolveRock()
     {
         _debrisVFX.Stop();
@@ -106,10 +112,5 @@ public class Rock : MonoBehaviour
         if (!character) return;
         if (rb.velocity.magnitude < _desc.MinSpeedToDamage) return;
         character.Damage(1.0f);
-    }
-
-    private void OnDestroy() {
-        _rockHowlState.Rocks.Remove(this);
-        _rockHowlState.rockPositions.Remove(transform.position);
     }
 }

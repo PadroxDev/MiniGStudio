@@ -143,8 +143,8 @@ MonoBehaviour:
   _bombCountdown: 3
   _maxFollowDelta: 5
   _followSpeed: 8
-  _moveDuration: 5
-  _spinDuration: 4
+  _moveDuration: 2.5
+  _spinDuration: 3
   _minSpinSpeed: 10
   _maxSpinSpeed: 100
   _shatteredPillar: {fileID: -5671845450507399840, guid: 9fd2d60690b5e0543a0143bcfa6e5261,
@@ -216,5 +216,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8
+  m_Radius: 9
   m_Center: {x: 0, y: 0, z: 0}

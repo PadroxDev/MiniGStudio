@@ -1201,7 +1201,7 @@ PrefabInstance:
     - target: {fileID: 2539161771033397251, guid: ea4324e39606b124fbc8962ece08c421,
         type: 3}
       propertyPath: _rockHowlDescriptor.ChargedRockPercentage
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2746374966866898559, guid: ea4324e39606b124fbc8962ece08c421,
         type: 3}
@@ -2355,27 +2355,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5022576333795973461, guid: eda1320b8fbad484f9a7a663edcf06cf,
-        type: 3}
-      propertyPath: _followSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022576333795973461, guid: eda1320b8fbad484f9a7a663edcf06cf,
-        type: 3}
-      propertyPath: _explosionVFX
-      value: 
-      objectReference: {fileID: 735422806758689602, guid: ef8bb653502ec5543ba9433d0c685564,
-        type: 3}
-    - target: {fileID: 5022576333795973461, guid: eda1320b8fbad484f9a7a663edcf06cf,
-        type: 3}
-      propertyPath: _elevationForce
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022576333795973461, guid: eda1320b8fbad484f9a7a663edcf06cf,
-        type: 3}
-      propertyPath: _maxFollowDelta
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5092883495364913447, guid: eda1320b8fbad484f9a7a663edcf06cf,
         type: 3}
       propertyPath: m_LocalPosition.x

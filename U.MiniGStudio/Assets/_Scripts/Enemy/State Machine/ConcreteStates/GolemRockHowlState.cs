@@ -28,6 +28,7 @@ namespace MiniGStudio
             public float DissolveDuration;
             public float MinSpeedToDamage;
             public BombManager BombPrefab;
+            public Vector3 Center;
         }
 
         public List<Rock> Rocks = new List<Rock>();
@@ -86,7 +87,7 @@ namespace MiniGStudio
         {
             for (int i = 0; i < Desc.RockCount; i++)
             {
-                Vector3 center = Vector3.down * Desc.ElevationHeight;
+                Vector3 center = Desc.Center + Vector3.down * Desc.ElevationHeight;
                 Vector3 randomPos = Helpers.RandomPointInCircle(center, Desc.SpawnRadius);
                 if (IsPositionValid(randomPos))
                 {
@@ -103,6 +104,7 @@ namespace MiniGStudio
                 _rocksParent);
             Rocks.Add(rock);
             rockPositions.Add(pos);
+            rock.InitPos = pos;
             rock.BindWithGolem(this);
 
             Vector3 sca = Vector3.one * Desc.AverageSize;

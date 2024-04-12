@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MiniGStudio
 {
@@ -20,6 +21,7 @@ namespace MiniGStudio
         {
             base.EnterState();
             character.Animator.SetTrigger(DYING_TRIGGER);
+            character.StartCoroutine(RefreshGame());
         }
 
         public override void ExitState()
@@ -35,6 +37,12 @@ namespace MiniGStudio
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+        }
+
+        private IEnumerator RefreshGame() {
+            character.GolemComponent.enabled = false;
+            yield return Helpers.GetWait(3f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

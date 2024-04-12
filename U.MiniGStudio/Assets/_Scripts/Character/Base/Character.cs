@@ -14,6 +14,7 @@ namespace MiniGStudio
         public Animator Animator;
         public PlayerController Controller;
         public Rigidbody RB;
+        public Golem GolemComponent;
 
         [SerializeField] private ScreenShake _screenShake;
         [SerializeField] private AudioSource _musicSource;

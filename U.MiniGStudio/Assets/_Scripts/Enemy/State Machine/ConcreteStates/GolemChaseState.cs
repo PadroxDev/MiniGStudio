@@ -20,13 +20,17 @@ namespace MiniGStudio
 
         private const string CHASE_ANIM_PARAM = "Speed";
 
-        private float _elapsedTime;
+        private float _throwElapsed;
+        private float _smashElapsed;
 
         private Descriptor _desc;
 
         public GolemChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine, Descriptor desc) : base(enemy, enemyStateMachine)
         {
             _desc = desc;
+
+            _smashElapsed = 0.0f;
+            _throwElapsed = 0.0f;
         }
 
         public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
@@ -38,7 +42,6 @@ namespace MiniGStudio
         {
             base.EnterState();
             _enemy.Animator.SetFloat(CHASE_ANIM_PARAM, 0);
-            _elapsedTime = 0.0f;
         }
 
         public override void ExitState()
@@ -57,30 +60,33 @@ namespace MiniGStudio
                 return;
             }
 
-            _elapsedTime += Time.deltaTime;
+            _throwElapsed += Time.deltaTime;
+            _smashElapsed += Time.deltaTime;
 
-            if (_desc.SmashCooldown <= _elapsedTime)
+            if (_desc.SmashCooldown <= _smashElapsed)
             {
-
                 if (distance >= _desc.MinimumSmashDistance)
                 {
-                    _elapsedTime = 0.0f;
+                    _smashElapsed = 0.0f;
                     _enemyStateMachine.ChangeState(_enemy.GroundSmashState);
+                    return;
                 }
             }
 
-            if (_desc.RockCooldown <= _elapsedTime)
+            if(_enemy.RockHowlState.Rocks.Count <= 0) {
+                _enemyStateMachine.ChangeState(_enemy.RockHowlState);
+                return;
+            }
+
+            Debug.Log(_throwElapsed);
+            if (_desc.RockCooldown <= _throwElapsed)
             {
                 Rock rock = GetClosestRock();
-                if (rock == null)
-                {
-                    _elapsedTime = 0.0f;
-                    _enemyStateMachine.ChangeState(_enemy.RockHowlState);
-                }
-                else if (rock != null && Vector3.Distance(_enemy.transform.position, rock.transform.position) <= _desc.MaximumRockDistance)
-                {
+                if (rock != null && Vector3.Distance(_enemy.transform.position, rock.transform.position) <= _desc.MaximumRockDistance) {
+                    _throwElapsed = 0.0f;
                     _enemy.RockThrowState.CurrentThrowableRock = rock;
                     _enemyStateMachine.ChangeState(_enemy.RockThrowState);
+                    return;
                 }
             }
 

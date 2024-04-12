@@ -54,6 +54,7 @@ namespace MiniGStudio
         private Vector3 _bombPos;
         private float _moveToPillarCountdown;
         private float _spinCountdown;
+        private WinManager _winManager;
 
         private void Start() {
             _rb = GetComponent<Rigidbody>();
@@ -62,6 +63,8 @@ namespace MiniGStudio
             _currentState = State.Floating;
             _moveToPillarCountdown = 0;
             _spinCountdown = 0;
+
+            _winManager = GameObject.FindGameObjectWithTag("WinManager").GetComponent<WinManager>();
         }
 
         private void FixedUpdate() {
@@ -102,7 +105,6 @@ namespace MiniGStudio
             _moveToPillarCountdown += Time.fixedDeltaTime;
 
             float alpha = Mathf.Clamp01(_moveToPillarCountdown / _moveDuration);
-            Debug.Log(alpha);
             Vector3 pos = Vector3.Lerp(_lerpStartPos, _bombPos, alpha);
             _rb.position = pos;
 
@@ -129,8 +131,11 @@ namespace MiniGStudio
             VisualEffect vfx = Instantiate(_explosionVFX, transform.position, Quaternion.identity, Helpers.VFXParent);
             Destroy(vfx, 4f);
             ShatteredPillar shatteredPillar = Instantiate(_shatteredPillar, _pillar.position, _pillar.rotation);
-            Destroy(_pillar.gameObject);
             shatteredPillar.Shatter(transform.position);
+
+            _winManager.DestroyPillar();
+            Destroy(_pillar.gameObject);
+
             Destroy(gameObject);
         }
 
@@ -143,13 +148,14 @@ namespace MiniGStudio
         }
 
         private void OnCollisionEnter(Collision collision) {
-            VisualEffect vfx = Instantiate(_explosionVFX, _pillar.position, Quaternion.identity, Helpers.VFXParent);
+            VisualEffect vfx = Instantiate(_explosionVFX, transform.position, Quaternion.identity, Helpers.VFXParent);
             Destroy(vfx, 4f);
-            Destroy(_pillar.gameObject);
+            Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other) {
             if (other.transform.tag == "Pillar") {
+                if (_currentState != State.Follow) return;
                 _pillar = other.transform;
                 _lerpStartPos = transform.position;
                 _slerpStartRot = transform.rotation;
@@ -161,6 +167,7 @@ namespace MiniGStudio
 
             if (other.transform.tag == "Player")  // Change with Character Component
             {
+                if (_currentState != State.Floating) return;
                 _plr = other.transform;
                 _currentState = State.Follow;
             }

@@ -122,6 +122,7 @@ namespace MiniGStudio
 
         public void GrabRock()
         {
+            CurrentThrowableRock.Grab();
             CurrentThrowableRock.transform.parent = _desc.GolemHand;
             CurrentThrowableRock.transform.localPosition = Vector3.zero;
             if (CurrentThrowableRock.TryGetComponent(out Rigidbody rb)) {
@@ -135,7 +136,7 @@ namespace MiniGStudio
 
         public void ThrowRock()
         {
-            Vector3 dir = (_enemy.PlayerRB.position - _enemy.RB.position).normalized;
+            Vector3 dir = (_enemy.PlayerRB.position + Vector3.up * 6f - CurrentThrowableRock.transform.position).normalized;
             _enemy.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
             if (CurrentThrowableRock.TryGetComponent(out Rigidbody rb))
             {
