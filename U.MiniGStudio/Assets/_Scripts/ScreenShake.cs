@@ -9,6 +9,7 @@ namespace MiniGStudio
         public bool start = false;
         public AnimationCurve curve;
         public float duration = 1.0f;
+        public float intensity = 1.0f;
 
         private void Update()
         {
@@ -27,7 +28,7 @@ namespace MiniGStudio
             {
                 elapsedTime += Time.deltaTime;
                 float strenght = curve.Evaluate(elapsedTime / duration);
-                transform.position = startPosition + Random.insideUnitSphere * strenght;
+                transform.position = startPosition + Random.insideUnitSphere * (strenght * intensity);
                 yield return null;
             }
             transform.position = startPosition;

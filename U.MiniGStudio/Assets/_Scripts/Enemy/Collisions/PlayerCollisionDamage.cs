@@ -8,11 +8,9 @@ namespace MiniGStudio
     {
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.transform.tag != "Player") return;
-            {
-                Debug.Log("Ouch");
-                // TODO : LE JOUEUR PREND 1 DÉGÂT ICI
-            }
+            Character character = collision.GetComponentInChildren<Character>();
+            if (!character) return;
+            character.Damage(1.0f);
         }
     }
 }

@@ -12,7 +12,10 @@ namespace MiniGStudio
             public float ChaseSpeed;
             public float FistDetectionRange;
             public float SmashCooldown;
+            public float RockCooldown;
             public float MinimumSmashDistance;
+            public float MaximumRockDistance;
+            public LayerMask whatisRock;
         }
 
         private const string CHASE_ANIM_PARAM = "Speed";
@@ -66,6 +69,21 @@ namespace MiniGStudio
                 }
             }
 
+            if (_desc.RockCooldown <= _elapsedTime)
+            {
+                Rock rock = GetClosestRock();
+                if (rock == null)
+                {
+                    _elapsedTime = 0.0f;
+                    _enemyStateMachine.ChangeState(_enemy.RockHowlState);
+                }
+                else if (rock != null && Vector3.Distance(_enemy.transform.position, rock.transform.position) <= _desc.MaximumRockDistance)
+                {
+                    _enemy.RockThrowState.CurrentThrowableRock = rock;
+                    _enemyStateMachine.ChangeState(_enemy.RockThrowState);
+                }
+            }
+
             Vector3 direction = (_enemy.PlayerRB.transform.position - _enemy.RB.transform.position).normalized;
             _enemy.transform.LookAt(_enemy.PlayerRB.transform.position, Vector3.up);
             _enemy.MoveEnemy(direction * _desc.ChaseSpeed);
@@ -78,5 +96,24 @@ namespace MiniGStudio
         {
             base.PhysicsUpdate();
         }
+
+        private Rock GetClosestRock()
+        {
+            Vector3 enemyPos = _enemy.transform.position;
+            Collider[] rocks = Physics.OverlapSphere(enemyPos, 100.0f, _desc.whatisRock);
+            if (rocks.Length <= 0) return null;
+            GameObject rockGO = rocks[0].gameObject;
+
+            for (int i = 1; i < rocks.Length; i++)
+            {
+                float dist = Vector3.Distance(rockGO.gameObject.transform.position, enemyPos);
+                float nextDist = Vector3.Distance(rocks[i].gameObject.transform.position, enemyPos);
+                rockGO = dist < nextDist ? rockGO : rocks[i].gameObject;
+            }
+
+            if (!rockGO.TryGetComponent(out Rock rock)) return null;
+            return rock;
+        }
+
     }
 }

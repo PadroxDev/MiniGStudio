@@ -114,8 +114,7 @@ namespace MiniGStudio
 
         public void ChangeToChaseState()
         {
-            _enemy.RockThrowState.CurrentThrowableRock = Rocks[0];
-            _enemyStateMachine.ChangeState(_enemy.RockThrowState);
+            _enemyStateMachine.ChangeState(_enemy.ChaseState);
         }
 
         private bool IsPositionValid(Vector3 position)
